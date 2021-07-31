@@ -2,8 +2,9 @@ import { HttpStatus, INestApplication } from '@nestjs/common';
 import * as mongoose from 'mongoose';
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { BooksModule } from './books/books.module';
-import { CreateBookDto } from './books/dto/create-book.dto';
+import { BooksModule } from '../src/books/books.module';
+import { CreateBookDto } from '../src/books/dto/create-book.dto';
+import { PaginationBookDto } from '../src/books/dto/pagination.dto';
 
 describe('Books', () => {
   let app: INestApplication;
@@ -32,6 +33,17 @@ describe('Books', () => {
       .set('Accept', 'application/json')
       .send(book)
       .expect(HttpStatus.CREATED);
+  });
+
+  it('/GET books', () => {
+    const pagination: PaginationBookDto = {
+      limit: 20,
+      start: 0,
+    };
+    return request(app.getHttpServer())
+      .get(`/books?${pagination.limit}&${pagination.start}`)
+      .set('Accept', 'application/json')
+      .expect(HttpStatus.OK);
   });
 
   afterAll(async () => {

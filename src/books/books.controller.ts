@@ -8,9 +8,9 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { PaginationBookDto } from 'src/pagination/dto/pagination.dto';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
+import { PaginationBookDto } from './dto/pagination.dto';
 import { Book } from './shemas/book.schema';
 
 @ApiTags('books')
@@ -39,6 +39,6 @@ export class BooksController {
   @ApiQuery({ name: 'start' })
   @HttpCode(HttpStatus.OK)
   getBooks(@Query() paginationBookDto: PaginationBookDto): Promise<Book[]> {
-    return this.booksService.getall(paginationBookDto);
+    return this.booksService.getAll(paginationBookDto);
   }
 }

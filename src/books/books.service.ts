@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { PaginationBookDto } from 'src/pagination/dto/pagination.dto';
+import { PaginationBookDto } from 'src/books/dto/pagination.dto';
 import { CreateBookDto } from './dto/create-book.dto';
 import { Book } from './shemas/book.schema';
 
@@ -8,7 +8,7 @@ import { Book } from './shemas/book.schema';
 export class BooksService {
   constructor(@Inject('BOOK_MODEL') private readonly bookModel: Model<Book>) {}
 
-  async getall(paginationBookDto: PaginationBookDto): Promise<Book[]> {
+  async getAll(paginationBookDto: PaginationBookDto): Promise<Book[]> {
     return this.bookModel
       .find()
       .limit(Number(paginationBookDto.limit))
