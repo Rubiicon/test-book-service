@@ -45,8 +45,4 @@ describe('Books', () => {
       .set('Accept', 'application/json')
       .expect(HttpStatus.OK);
   });
-
-  afterAll(async () => {
-    await app.close();
-  });
 });
