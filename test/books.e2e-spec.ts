@@ -2,9 +2,9 @@ import { HttpStatus, INestApplication } from '@nestjs/common';
 import * as mongoose from 'mongoose';
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { BooksModule } from '../src/books/books.module';
-import { CreateBookDto } from '../src/books/dto/create-book.dto';
-import { PaginationBookDto } from '../src/books/dto/pagination.dto';
+import { BooksModule } from '../src/components/books/books.module';
+import { CreateBookDto } from '../src/components/books/dto/create-book.dto';
+import { PaginationBookDto } from '../src/components/books/dto/pagination.dto';
 
 describe('Books', () => {
   let app: INestApplication;

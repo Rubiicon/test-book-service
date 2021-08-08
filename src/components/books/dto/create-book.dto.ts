@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateBookDto {
   @IsNotEmpty()
@@ -22,4 +22,11 @@ export class CreateBookDto {
     example: 256,
   })
   readonly pages: number;
+
+  @IsNotEmpty()
+  @IsMongoId()
+  @ApiProperty({
+    example: '610d23fd06214e775294200a',
+  })
+  readonly addedBy: string;
 }
